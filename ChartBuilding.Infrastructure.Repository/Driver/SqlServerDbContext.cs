@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ChartBuilding.Core.Repository.Driver
 {
-    internal class SqlServerDbContext : DbContext
+    public class SqlServerDbContext : DbContext
     {
         public DbSet<Building> Buildings { get; set; }
         public DbSet<DataField> DataFields { get; set; }

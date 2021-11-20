@@ -4,7 +4,7 @@ using ChartBulding.Core.Domain;
 
 namespace ChartBuilding.Core.Repository
 {
-    internal class DataFieldRepository : RepositoryBase<DataField>, IDataFieldRepository
+    public class DataFieldRepository : RepositoryBase<DataField>, IDataFieldRepository
     {
         public DataFieldRepository(SqlServerDbContext dbContext) : base(dbContext)
         {

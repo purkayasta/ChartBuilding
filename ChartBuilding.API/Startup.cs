@@ -1,3 +1,4 @@
+using ChartBuilding.Configurations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -17,6 +18,10 @@ namespace ChartBuilding.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSqlServer(Configuration.GetConnectionString("ChartConnectionString"));
+            services.AddAutomapper(typeof(Startup));
+            services.AddServiceDependency();
+            services.AddRepositoryDependency();
             services.AddControllers();
         }
 

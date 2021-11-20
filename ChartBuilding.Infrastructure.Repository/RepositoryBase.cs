@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ChartBuilding.Core.Repository
 {
-    internal class RepositoryBase<T> : IRepository<T> where T : class
+    public class RepositoryBase<T> : IRepository<T> where T : class
     {
         private readonly DbSet<T> _table;
 

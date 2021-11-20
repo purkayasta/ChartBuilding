@@ -8,7 +8,7 @@ using ChartBuilding.Infrastructure.Service.Mapper.Models;
 
 namespace ChartBuilding.Infrastructure.Service.Implementations
 {
-    internal class ReadingService : IReadingService
+    public class ReadingService : IReadingService
     {
         private readonly IReadingRepository _repository;
         private readonly IMapper _mapper;
