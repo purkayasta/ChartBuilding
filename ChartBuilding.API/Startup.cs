@@ -18,6 +18,7 @@ namespace ChartBuilding.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSwaggerGen();
             services.AddSqlServer(Configuration.GetConnectionString("ChartConnectionString"));
             services.AddAutomapper(typeof(Startup));
             services.AddServiceDependency();
@@ -29,6 +30,13 @@ namespace ChartBuilding.API
         {
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+                options.RoutePrefix = string.Empty;
+            });
 
             app.UseHttpsRedirection()
                 .UseRouting()

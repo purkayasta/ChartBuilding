@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ChartBuilding.API.Controllers
 {
-    [Route("api/[controller]/")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class DataFieldController : ControllerBase
     {
