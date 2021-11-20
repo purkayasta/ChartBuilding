@@ -12,5 +12,8 @@ namespace ChartBuilding.Infrastructure.Interface
         ValueTask<T> FindOneAsync(Expression<Func<T, bool>> queries);
         Task<int> CountAsync(Expression<Func<T, bool>> queries);
         ValueTask<IEnumerable<T>> GetAllAsync();
+        ValueTask Add(T entity);
+        ValueTask AddManyAsync(IEnumerable<T> entities);
+        ValueTask SaveAsync();
     }
 }
