@@ -12,9 +12,10 @@ namespace ChartBuilding.Infrastructure.Service.Implementations
         private readonly IDataFieldRepository _repository;
         private readonly IMapper _mapper;
 
-        public DataFieldService(IDataFieldRepository repository)
+        public DataFieldService(IDataFieldRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
         public async ValueTask<IEnumerable<DataFieldDto>> GetAllAsync()
         {
