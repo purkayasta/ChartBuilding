@@ -4,4 +4,13 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.12" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ChartBuilding.Infrastructure.Interface\ChartBuilding.Core.Interface.csproj" />
+    <ProjectReference Include="..\ChartBulding.Core.Domain\ChartBulding.Core.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

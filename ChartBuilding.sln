@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartBuilding.API", "ChartBuilding.API\ChartBuilding.API.csproj", "{86C7006D-BDEC-4A8D-B0FE-0B5C0804C33B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChartBuilding.API", "ChartBuilding.API\ChartBuilding.API.csproj", "{86C7006D-BDEC-4A8D-B0FE-0B5C0804C33B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{64337CCF-40CF-4B33-9D28-0E40E02EF752}"
 EndProject
@@ -13,11 +13,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructures", "Infrastr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{7AAEA16E-A0FD-4A05-984F-AD24D8DDF1D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartBulding.Core.Domain", "ChartBulding.Core.Domain\ChartBulding.Core.Domain.csproj", "{5A388C4B-17F6-4B2E-A5C7-CAFABC95E528}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChartBulding.Core.Domain", "ChartBulding.Core.Domain\ChartBulding.Core.Domain.csproj", "{5A388C4B-17F6-4B2E-A5C7-CAFABC95E528}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartBuilding.Infrastructure.Repository", "ChartBuilding.Infrastructure.Repository\ChartBuilding.Infrastructure.Repository.csproj", "{A46C4B76-7EF6-4E92-8014-0CBBD1E0A685}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChartBuilding.Infrastructure.Repository", "ChartBuilding.Infrastructure.Repository\ChartBuilding.Infrastructure.Repository.csproj", "{A46C4B76-7EF6-4E92-8014-0CBBD1E0A685}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartBuilding.Infrastructure.Interface", "ChartBuilding.Infrastructure.Interface\ChartBuilding.Infrastructure.Interface.csproj", "{1A300B7E-A7BA-4915-82B8-4B968C6DFE99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChartBuilding.Core.Interface", "ChartBuilding.Infrastructure.Interface\ChartBuilding.Core.Interface.csproj", "{1A300B7E-A7BA-4915-82B8-4B968C6DFE99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -52,7 +52,7 @@ Global
 		{7AAEA16E-A0FD-4A05-984F-AD24D8DDF1D5} = {64337CCF-40CF-4B33-9D28-0E40E02EF752}
 		{5A388C4B-17F6-4B2E-A5C7-CAFABC95E528} = {7AAEA16E-A0FD-4A05-984F-AD24D8DDF1D5}
 		{A46C4B76-7EF6-4E92-8014-0CBBD1E0A685} = {09393E81-F87E-4376-A071-F9D5A94A1631}
-		{1A300B7E-A7BA-4915-82B8-4B968C6DFE99} = {09393E81-F87E-4376-A071-F9D5A94A1631}
+		{1A300B7E-A7BA-4915-82B8-4B968C6DFE99} = {7AAEA16E-A0FD-4A05-984F-AD24D8DDF1D5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1CB435EF-3008-455E-81AF-E432907837BB}
