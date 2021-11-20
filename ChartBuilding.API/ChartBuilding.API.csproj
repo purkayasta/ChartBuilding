@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\ChartBuilding.Infrastructure.Service\ChartBuilding.Infrastructure.Service.csproj" />
   </ItemGroup>
 
 </Project>
