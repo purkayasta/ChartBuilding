@@ -3,15 +3,16 @@ using ChartBuilding.Core.Repository;
 using ChartBuilding.Infrastructure.Interface;
 using ChartBuilding.Infrastructure.Service.Implementations;
 using ChartBuilding.Infrastructure.Service.Interfaces;
+using ChartBuilding.Infrastructure.Service.Mapper;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ChartBuilding.Configurations
 {
     public static class DependencyExtensions
     {
-        public static void AddAutomapper(this IServiceCollection services, Type appType)
+        public static void AddAutomapper(this IServiceCollection services)
         {
-            services.AddAutoMapper(appType);
+            services.AddAutoMapper(typeof(Profiler));
         }
 
         public static void AddServiceDependency(this IServiceCollection services)

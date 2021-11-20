@@ -20,7 +20,7 @@ namespace ChartBuilding.API
         {
             services.AddSwaggerGen();
             services.AddSqlServer(Configuration.GetConnectionString("ChartConnectionString"));
-            services.AddAutomapper(typeof(Startup));
+            services.AddAutomapper();
             services.AddServiceDependency();
             services.AddRepositoryDependency();
             services.AddControllers();

@@ -1,13 +1,15 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace ChartBuilding.API.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class TestController : ControllerBase
     {
         [HttpGet]
-        public IActionResult Get() => Ok("Hello World");
+        public IActionResult Get()
+        {
+            return Ok("Hello");
+        }
     }
 }

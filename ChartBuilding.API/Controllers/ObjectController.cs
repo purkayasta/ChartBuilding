@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ChartBuilding.API.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ObjectController : ControllerBase
     {
@@ -16,7 +16,7 @@ namespace ChartBuilding.API.Controllers
         }
 
         [HttpGet]
-        public async ValueTask<IActionResult> Get()
+        public async ValueTask<IActionResult> GetAsync()
         {
             var result = await _objectService.GetAllAsync();
             return Ok(result);

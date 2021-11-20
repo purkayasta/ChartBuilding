@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ChartBuilding.API.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class DataFieldController : ControllerBase
     {
@@ -17,7 +17,7 @@ namespace ChartBuilding.API.Controllers
         }
 
         [HttpGet]
-        public async ValueTask<IActionResult> Get()
+        public async ValueTask<IActionResult> GetAsync()
         {
             var result = await _dataFieldService.GetAllAsync();
             return Ok(result);
