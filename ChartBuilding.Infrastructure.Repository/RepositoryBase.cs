@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using ChartBuilding.Core.Interface;
-using ChartBuilding.Infrastructure.Repository.Driver;
+using ChartBuilding.Core.Repository.Driver;
+using ChartBuilding.Infrastructure.Interface;
 using Microsoft.EntityFrameworkCore;
 
-namespace ChartBuilding.Infrastructure.Repository
+namespace ChartBuilding.Core.Repository
 {
     internal class RepositoryBase<T> : IRepository<T> where T : class
     {
@@ -17,6 +17,8 @@ namespace ChartBuilding.Infrastructure.Repository
         {
             _table = dbContext.Set<T>();
         }
+
+        public async ValueTask<IEnumerable<T>> GetAllAsync() => await _table.ToListAsync();
 
         public async Task<int> CountAsync(Expression<Func<T, bool>> queries) => await _table.CountAsync(queries);
 

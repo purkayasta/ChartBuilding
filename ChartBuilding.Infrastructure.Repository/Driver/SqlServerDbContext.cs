@@ -1,7 +1,7 @@
 ﻿using ChartBulding.Core.Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace ChartBuilding.Infrastructure.Repository.Driver
+namespace ChartBuilding.Core.Repository.Driver
 {
     internal class SqlServerDbContext : DbContext
     {

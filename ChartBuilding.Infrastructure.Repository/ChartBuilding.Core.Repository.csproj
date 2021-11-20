@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ChartBuilding.Infrastructure.Interface\ChartBuilding.Core.Interface.csproj" />
+    <ProjectReference Include="..\ChartBuilding.Infrastructure.Interface\ChartBuilding.Infrastructure.Interface.csproj" />
     <ProjectReference Include="..\ChartBulding.Core.Domain\ChartBulding.Core.Domain.csproj" />
   </ItemGroup>
 

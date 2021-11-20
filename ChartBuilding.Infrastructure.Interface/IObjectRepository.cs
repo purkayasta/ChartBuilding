@@ -1,6 +1,6 @@
 ﻿using ChartBulding.Core.Domain;
 
-namespace ChartBuilding.Core.Interface
+namespace ChartBuilding.Infrastructure.Interface
 {
     public interface IObjectRepository : IRepository<Object>
     {

@@ -1,8 +1,8 @@
-﻿using ChartBuilding.Core.Interface;
-using ChartBuilding.Infrastructure.Repository.Driver;
+﻿using ChartBuilding.Core.Repository.Driver;
+using ChartBuilding.Infrastructure.Interface;
 using ChartBulding.Core.Domain;
 
-namespace ChartBuilding.Infrastructure.Repository
+namespace ChartBuilding.Core.Repository
 {
     internal class BuildingRespository : RepositoryBase<Building>, IBuildingRepository
     {
