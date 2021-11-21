@@ -29,20 +29,25 @@ namespace Chartbuilding.Generator
             var objectList = await objectRepository.GetAllAsync();
             var dataFieldList = await fieldRepository.GetAllAsync();
             var readingList = new List<Reading>();
-            var autoFaker = AutoFaker.Create();
-            var dateTimer = DateTime.Now;
+
+            var dateTimer = new DateTime(2021, 11, 10);
 
             Random random = new Random();
-            for (int i = 0; i < 100; i++)
+
+            int target = 60000;
+            for (int i = 0; i < target; i++)
             {
+                if (i % 5 == 0)
+                    dateTimer = dateTimer.AddMinutes(5);
+
                 readingList.Add(new Reading
                 {
                     BuildingId = random.Next(0, buildingList.Count()),
                     DataFieldId = random.Next(0, dataFieldList.Count()),
                     ObjectId = random.Next(0, objectList.Count()),
-                    Value = autoFaker.Generate<int>(),
-                    TimeStamp = dateTimer.AddMinutes(1),
-                    CreatedOn = dateTimer
+                    Value = i,
+                    TimeStamp = dateTimer,
+                    CreatedOn = DateTime.Now,
                 });
             }
 

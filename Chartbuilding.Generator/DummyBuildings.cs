@@ -18,7 +18,7 @@ namespace Chartbuilding.Generator
         {
             System.Console.WriteLine("===========Started Buildings========");
             var autoFaker = AutoFaker.Create();
-            var buildings = autoFaker.Generate<Building>(20);
+            var buildings = autoFaker.Generate<Building>(100);
             await buildingRepository.AddManyAsync(buildings);
             await buildingRepository.SaveAsync();
             System.Console.WriteLine("===========Finished========");

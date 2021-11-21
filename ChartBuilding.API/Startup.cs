@@ -15,15 +15,23 @@ namespace ChartBuilding.API
         }
 
         public IConfiguration Configuration { get; }
+        private readonly string _policyName = "_angularCors";
 
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSwaggerGen();
             services.AddSqlServer(Configuration.GetConnectionString("ChartConnectionString"));
-            services.AddAutomapper();
+            services.AddMapper();
             services.AddServiceDependency();
             services.AddRepositoryDependency();
-            services.AddControllers();
+            services.AddControllers().ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true);
+            services.AddCors(policy =>
+            {
+                policy.AddPolicy(name: _policyName, pol =>
+                {
+                    pol.WithOrigins("http://localhost:4200", "https://localhost:4200");
+                });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -39,6 +47,7 @@ namespace ChartBuilding.API
             });
 
             app.UseHttpsRedirection()
+                .UseCors(_policyName)
                 .UseRouting()
                 .UseAuthentication()
                 .UseEndpoints(endpoints => endpoints.MapControllers());

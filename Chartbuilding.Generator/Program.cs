@@ -26,14 +26,15 @@ namespace Chartbuilding.Generator
                 builder.WithSkip<Building>(x => x.Id);
                 builder.WithSkip<ChartBulding.Core.Domain.Object>(x => x.Id);
                 builder.WithSkip<DataField>(x => x.Id);
-                builder.WithSkip<Reading>(x=> x.Id);
+                builder.WithSkip<Reading>(x => x.Id);
             });
 
             IntializeDiContainer();
-            await new DummyBuildings(buildingRepository).Generate();
-            await new DummyDataFields(fieldRepository).Generate();
-            await new DummyObjects(objectRepository).Generate();
-            await new DummyReadings(readingRepository, buildingRepository, fieldRepository, objectRepository).Generate();
+            //await new DummyBuildings(buildingRepository).Generate();
+            //await new DummyDataFields(fieldRepository).Generate();
+            //await new DummyObjects(objectRepository).Generate();
+
+            new DummyReadings(readingRepository, buildingRepository, fieldRepository, objectRepository).Generate().GetAwaiter().GetResult();
             Console.WriteLine($"Finished Task => {timer.Elapsed.TotalSeconds} seconds");
             timer.Stop();
         }
