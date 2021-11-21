@@ -1,0 +1,17 @@
+.header-container {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.chart-container {
+	display: flex;
+	justify-content: center;
+}
+
+
+
+/* .mat-divider {
+	border-top-color: green;
+	border-top-width: 0px;
+  border-top-style: dashed;	
+} */
