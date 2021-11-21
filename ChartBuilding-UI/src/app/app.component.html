@@ -3,46 +3,58 @@
     <mat-card-content>
       <mat-form-field appearance="standard">
         <mat-label>Select Buildings</mat-label>
-        <mat-select>
-          <mat-option value="one">First option</mat-option>
-          <mat-option value="two">Second option</mat-option>
+        <mat-select [(value)]="selectedBuildingId">
+          <mat-option *ngFor="let b of buildings" [value]="b.id">{{
+            b.name
+          }}</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="standard">
         <mat-label>Select Objects</mat-label>
-        <mat-select>
-          <mat-option value="one">First option</mat-option>
-          <mat-option value="two">Second option</mat-option>
+        <mat-select [(value)]="selectedObjectId">
+          <mat-option *ngFor="let o of objects" [value]="o.id">{{
+            o.name
+          }}</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="standard">
         <mat-label>Select DataFields</mat-label>
-        <mat-select>
-          <mat-option value="one">First option</mat-option>
-          <mat-option value="two">Second option</mat-option>
+        <mat-select [(value)]="selectedDataFieldId">
+          <mat-option *ngFor="let d of dataFields" [value]="d.id">{{
+            d.name
+          }}</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="standard">
         <mat-label>Enter a date range</mat-label>
-        <mat-date-range-input [rangePicker]="picker">
-          <input matStartDate placeholder="Start date" />
-          <input matEndDate placeholder="End date" />
+        <mat-date-range-input
+          [formGroup]="dateRangeInput"
+          [rangePicker]="picker"
+        >
+          <input
+            formControlName="startDate"
+            matStartDate
+            placeholder="Start date"
+          />
+          <input formControlName="endDate" matEndDate placeholder="End date" />
         </mat-date-range-input>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-date-range-picker #picker></mat-date-range-picker>
       </mat-form-field>
+      <mat-error *ngIf="!isDateRangeValid">Invalid Date</mat-error>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="accent">Search</button>
+      <button mat-raised-button color="accent" (click)="getDataFromReading()">
+        Search
+      </button>
     </mat-card-actions>
   </mat-card>
 
-	<mat-card class="chart-container">
-		<mat-card-title>Timeseries Data</mat-card-title>
-		<mat-card-content>
-
-		</mat-card-content>
-	</mat-card>
+  <mat-card class="chart-containe" *ngIf="dataLoaded > 0">
+    <mat-card-title class="center"
+      >Timeseries Data ({{ dataLoaded }})</mat-card-title
+    >
+  </mat-card>
 </div>
 
-<!-- <mat-divider></mat-divider> -->
+<canvas id="ctx-canvas">>{{ chart }}</canvas>
