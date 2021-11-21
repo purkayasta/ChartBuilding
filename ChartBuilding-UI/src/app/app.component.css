@@ -1,0 +1,13 @@
+.header-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.chart-container {
+  display: flex;
+  justify-content: center;
+}
+
+.center {
+  text-align: center;
+}
