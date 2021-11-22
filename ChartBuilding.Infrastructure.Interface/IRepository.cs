@@ -15,5 +15,7 @@ namespace ChartBuilding.Infrastructure.Interface
         ValueTask Add(T entity);
         ValueTask AddManyAsync(IEnumerable<T> entities);
         ValueTask SaveAsync();
+        IQueryable<T> FindWithOrderBy(Expression<Func<T, bool>> queries, Expression<Func<T, object>> orderBy);
+        IQueryable<T> FindWithOrderByDesending(Expression<Func<T, bool>> queries, Expression<Func<T, object>> orderBy);
     }
 }

@@ -30,11 +30,13 @@ namespace Chartbuilding.Generator
             var dataFieldList = await fieldRepository.GetAllAsync();
             var readingList = new List<Reading>();
 
-            var dateTimer = new DateTime(2021, 11, 10);
+            var dateTimer = new DateTime(2021, 11, 01);
 
             Random random = new Random();
 
-            int target = 60000;
+            int[] randomValues = new int[2] { 150, 190 };
+
+            int target = 100000;
             for (int i = 0; i < target; i++)
             {
                 if (i % 5 == 0)
@@ -45,7 +47,7 @@ namespace Chartbuilding.Generator
                     BuildingId = random.Next(0, buildingList.Count()),
                     DataFieldId = random.Next(0, dataFieldList.Count()),
                     ObjectId = random.Next(0, objectList.Count()),
-                    Value = i,
+                    Value = random.Next(randomValues[0], randomValues[1]),
                     TimeStamp = dateTimer,
                     CreatedOn = DateTime.Now,
                 });

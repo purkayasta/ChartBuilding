@@ -30,9 +30,9 @@ namespace Chartbuilding.Generator
             });
 
             IntializeDiContainer();
-            //await new DummyBuildings(buildingRepository).Generate();
-            //await new DummyDataFields(fieldRepository).Generate();
-            //await new DummyObjects(objectRepository).Generate();
+            await new DummyBuildings(buildingRepository).Generate();
+            await new DummyDataFields(fieldRepository).Generate();
+            await new DummyObjects(objectRepository).Generate();
 
             new DummyReadings(readingRepository, buildingRepository, fieldRepository, objectRepository).Generate().GetAwaiter().GetResult();
             Console.WriteLine($"Finished Task => {timer.Elapsed.TotalSeconds} seconds");

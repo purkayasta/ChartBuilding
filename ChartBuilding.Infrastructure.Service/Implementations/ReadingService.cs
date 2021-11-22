@@ -26,10 +26,10 @@ namespace ChartBuilding.Infrastructure.Service.Implementations
 
         public async ValueTask<IEnumerable<ReadingDto>> GetChartAsync(int? buildinId, int? objectId, int? dataFieldId, DateTime startDate, DateTime endDate)
         {
-            var result = await _repository.FindAsync(x => x.TimeStamp >= startDate && x.TimeStamp < endDate
+            var result = await Task.FromResult(_repository.FindWithOrderBy(x => x.TimeStamp >= startDate && x.TimeStamp <= endDate
                                         && (buildinId == null || x.BuildingId == buildinId)
                                         && (objectId == null || x.ObjectId == objectId)
-                                        && (dataFieldId == null || x.DataFieldId == dataFieldId));
+                                        && (dataFieldId == null || x.DataFieldId == dataFieldId), x => x.TimeStamp));
 
             return _mapper.Map<IEnumerable<ReadingDto>>(result);
         }

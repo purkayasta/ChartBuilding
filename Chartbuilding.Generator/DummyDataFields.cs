@@ -19,7 +19,7 @@ namespace Chartbuilding.Generator
         {
             System.Console.WriteLine("===========Started DataFields========");
             var autoFaker = AutoFaker.Create();
-            var buildings = autoFaker.Generate<DataField>(200);
+            var buildings = autoFaker.Generate<DataField>(100);
             await dataFieldRepository.AddManyAsync(buildings);
             await dataFieldRepository.SaveAsync();
             System.Console.WriteLine("===========Finished========");
