@@ -36,7 +36,8 @@ export class CommonService {
     startDate: Date | null,
     endDate: Date | null
   ): Observable<IReading[]> {
-    let urlParams = `?buildingId=${buildingId}&objectId=${objectId}&datatFieldId=${datatFieldId}&startDate=${startDate?.toISOString()}&endDate=${endDate?.toISOString()}`;
+
+    let urlParams = `?buildingId=${buildingId}&objectId=${objectId}&datatFieldId=${datatFieldId}&startDate=${startDate?.toDateString()}&endDate=${endDate?.toDateString()}`;
 
     return this._httpClient.get<IReading[]>(
       environment.baseApiUrl + `reading/` + urlParams
