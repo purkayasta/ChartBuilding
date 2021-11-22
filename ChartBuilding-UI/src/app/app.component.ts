@@ -32,7 +32,13 @@ export class AppComponent implements OnInit {
   chartConfiguration: ChartConfiguration | null = null;
   isChartCreated = false;
   dataLoaded: number = 0;
+  isDataFound: boolean = true;
 
+  previousStartDate: any;
+  previousEndDate: any;
+
+  yAxisValue: any;
+  xAxisValue: any;
   selectedBuildingId: number | null = null;
   selectedObjectId: number | null = null;
   selectedDataFieldId: number | null = null;
@@ -40,11 +46,6 @@ export class AppComponent implements OnInit {
     startDate: new FormControl(),
     endDate: new FormControl(),
   });
-
-  onSelect(event: any) {
-    console.log(event);
-  }
-
 
   constructor(private _service: CommonService) {
     Chart.register(...registerables);
@@ -71,9 +72,21 @@ export class AppComponent implements OnInit {
     });
   }
 
-  getDataFromReading(): void {
+  resetFilter(): void {
     this.dataLoaded = 0;
+    this.selectedBuildingId = null;
+    this.selectedDataFieldId = null;
+    this.selectedObjectId = null;
+    this.dateRangeInput.reset();
+    if (this.isChartCreated)
+      this.chart.destroy();
+    this.isChartCreated = false;
+    this.isDataFound = true;
+    this.isDateRangeValid = true;
+  }
 
+  searchBtnClickEvent(): void {
+    this.dataLoaded = 0;
 
     if (
       this.dateRangeInput.value.startDate === null || this.dateRangeInput.value.endDate === null
@@ -84,36 +97,87 @@ export class AppComponent implements OnInit {
     }
 
     this.isDateRangeValid = true;
+
+    if (this.dateRangeInput.value.startDate === this.previousStartDate && this.dateRangeInput.value.endDate === this.previousEndDate) {
+
+      let filterList = this.readings.filter(x => (this.selectedBuildingId === null || x.buildingId === this.selectedBuildingId) && (this.selectedDataFieldId === null || x.dataFieldId === this.selectedDataFieldId) && (this.selectedObjectId === null || x.objectId === this.selectedObjectId));
+
+      console.log(filterList);
+      // this.readings = filterList;
+
+      this.updateValuesForChart(filterList, () => this.chart.update());
+
+      // this.chart.update();
+
+      return;
+    }
+
+    this.previousStartDate = this.dateRangeInput.value.startDate;
+    this.previousEndDate = this.dateRangeInput.value.endDate;
+
+    this.getResultFromReading();
+  }
+
+  updateValuesForChart(srcList: IReading[], callback: any) {
+
+    this.dataLoaded = srcList.length;
+
+    this.yAxisValue = srcList.map(x => x.timeStamp);
+    this.xAxisValue = srcList.map(x => x.value);
+
+    if (this.dataLoaded < 1)
+      this.isDataFound = false;
+    else
+      this.isDataFound = true;
+
+    if (this.isChartCreated) {
+      this.chart.data.labels = this.yAxisValue;
+      this.chart.data.datasets[0].data = this.xAxisValue;
+    }
+
+    console.log("Callbacking this ", callback);
+
+    callback();
+  }
+
+  getResultFromReading(): void {
     this._service.getResultsFromReading(this.selectedBuildingId, this.selectedObjectId, this.selectedDataFieldId, this.dateRangeInput.value.startDate, this.dateRangeInput.value.endDate).subscribe((responses: IReading[]) => {
+
       this.readings = responses;
-      this.dataLoaded = this.readings.length;
-      let yAxisValue = this.readings.map(x => x.timeStamp);
-      let xAxisValue = this.readings.map(x => x.value);
+      this.updateValuesForChart(this.readings, () => {
 
-
-      if (this.isChartCreated) {
-
-        this.chart.data.labels = yAxisValue;
-        this.chart.data.datasets[0].data = xAxisValue;
-        this.chart.update();
-        return;
-      }
-
-
-      this.chart = new Chart("ctx-canvas", {
-        type: 'line',
-        data: {
-          labels: yAxisValue,
-          datasets: [{
-            label: 'Value',
-            borderWidth: 2,
-            fill: true,
-            data: xAxisValue,
-            backgroundColor: 'darkred',
-          }]
+        if (this.isChartCreated) {
+          this.chart.update();
+          return;
         }
+
+        this.drawChart();
       });
-      this.isChartCreated = true;
+
+    });
+  }
+
+  drawChart(): void {
+    this.isChartCreated = true;
+
+    this.chart = new Chart("ctx-canvas", {
+      type: 'line',
+      options: {
+        responsive: true
+      },
+      data: {
+        labels: this.yAxisValue,
+        datasets: [{
+          order: 1,
+          tension: 0.7,
+          showLine: true,
+          label: 'Value',
+          borderWidth: 2,
+          fill: false,
+          data: this.xAxisValue,
+          backgroundColor: '#27CAA1',
+        }]
+      }
     });
   }
 }

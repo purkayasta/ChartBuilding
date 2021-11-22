@@ -19,8 +19,8 @@ export class FiveDayRangeSelectionStrategy<D> implements MatDateRangeSelectionSt
 
 	private _createFiveDayRange(date: D | null): DateRange<D> {
 		if (date) {
-			const start = this._dateAdapter.addCalendarDays(date, -2);
-			const end = this._dateAdapter.addCalendarDays(date, 2);
+			const start = this._dateAdapter.addCalendarDays(date, -1);
+			const end = this._dateAdapter.addCalendarDays(date, 1);
 			return new DateRange<D>(start, end);
 		}
 

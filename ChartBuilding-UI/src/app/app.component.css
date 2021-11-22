@@ -1,6 +1,19 @@
-.header-container {
+@import url("https://fonts.googleapis.com/css2?family=Comforter&display=swap");
+
+.container {
   display: flex;
-  justify-content: space-evenly;
+  /* justify-content: ; */
+  justify-content: center;
+}
+
+.mat-error {
+  font-size: 30px;
+  padding: 20px;
+}
+
+.mat-card {
+  border: 0;
+  box-shadow: none;
 }
 
 .chart-container {
@@ -9,5 +22,18 @@
 }
 
 .center {
+  text-align: center;
+}
+
+.danger {
+  font-size: larger;
+  color: red;
+}
+
+.header {
+  padding: 30px;
+  font-family: "Comforter", cursive;
+  font-size: 50px;
+  font-weight: 600;
   text-align: center;
 }

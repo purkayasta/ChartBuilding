@@ -1,6 +1,7 @@
 <div>
-  <mat-card class="header-container">
-    <mat-card-content>
+  <p class="header">{{ title }}</p>
+  <mat-card>
+    <mat-card-content class="container">
       <mat-form-field appearance="standard">
         <mat-label>Select Buildings</mat-label>
         <mat-select [(value)]="selectedBuildingId">
@@ -41,20 +42,35 @@
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-date-range-picker #picker></mat-date-range-picker>
       </mat-form-field>
-      <mat-error *ngIf="!isDateRangeValid">Invalid Date</mat-error>
     </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="accent" (click)="getDataFromReading()">
+    <mat-error class="container" *ngIf="!isDateRangeValid"
+      >Invalid Date</mat-error
+    >
+    <mat-card-actions class="container">
+      <button mat-raised-button color="accent" (click)="searchBtnClickEvent()">
         Search
+      </button>
+      <button
+        style="margin-left: 2px"
+        mat-flat-button
+        color="warn"
+        (click)="resetFilter()"
+      >
+        Reset
       </button>
     </mat-card-actions>
   </mat-card>
 
-  <mat-card class="chart-containe" *ngIf="dataLoaded > 0">
-    <mat-card-title class="center"
+  <mat-card>
+    <mat-card-title *ngIf="dataLoaded > 0" class="center"
       >Timeseries Data ({{ dataLoaded }})</mat-card-title
     >
+    <p class="center" *ngIf="!isDataFound">
+      <mat-card-title class="danger">No Data Found</mat-card-title>
+    </p>
   </mat-card>
-</div>
 
-<canvas id="ctx-canvas">>{{ chart }}</canvas>
+  <canvas [ngStyle]="{ display: !isDataFound ? 'none' : '' }" id="ctx-canvas">{{
+    chart
+  }}</canvas>
+</div>
